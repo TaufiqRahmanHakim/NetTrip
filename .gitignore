@@ -51,7 +51,21 @@ CodeCoverage/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
-# NUnit
-*.VisualState.xml
-TestResult.xml
-nunit-*.xml
+# Visual Studio / Rider / VSCode
+.vs/
+.idea/
+.vscode/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Appsettings with secrets / local overrides
+appsettings*.Development.json
+appsettings.Production.json
+appsettings.Local.json
+# ponytail: keep base appsettings.json for non-secret template config; ignore completely if it contains secrets:
+# appsettings.json
