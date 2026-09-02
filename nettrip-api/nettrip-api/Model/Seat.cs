@@ -7,5 +7,7 @@
         public string SeatType { get; set; } = "Regular";
 
         public Bus Bus { get; set; } = null!;
+
+        public ICollection<TripSeat> TripSeats { get; set; } = new List<TripSeat>();
     }
 }

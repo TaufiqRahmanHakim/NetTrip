@@ -10,5 +10,7 @@
 
         public Route Route { get; set; } = null!;
         public Bus Bus { get; set; } = null!;
+
+        public ICollection<TripSeat> TripSeats { get; set; } = new List<TripSeat>();
     }
 }
