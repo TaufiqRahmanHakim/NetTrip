@@ -12,7 +12,7 @@ builder.Services.AddNpgsql<AppDbContext>(builder.Configuration.GetConnectionStri
 var app = builder.Build();
 
 
-app.MapGet("/api/bus", async (AppDbContext db) =>
+app.MapGet("/api/buses", async (AppDbContext db) =>
 {
     var buses = await db.buses.AsNoTracking().ToListAsync();
     return Results.Ok(buses);
