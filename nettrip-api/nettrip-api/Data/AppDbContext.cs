@@ -16,13 +16,18 @@ namespace nettrip_api.Data {
 
         public DbSet<Seat> seats { get; set; }
         public DbSet<TripSeat> TripSeats { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<ReservationSeat> ReservationSeats { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
-            //Bus 1 ───── * Seat
-            //Bus 1 ───── * Trip
-            //Route 1 ─── * Trip
-            //Trip 1 ─── * TripSeat
-            //Seat 1 ─── * TripSeat
+            //Bus           1 - *   Seat
+            //Bus           1 - *   Trip
+            //Route         1 - *   Trip
+            //Trip          1 - *   TripSeat
+            //Seat          1 - *   TripSeat
+            //Reservation   1 - *   ReservationSeat
+            //Reservation   1 - 1   Trip
+            
 
             //modelBuilder.Entity<Seat>()
             //    .HasOne(s => s.bus)
