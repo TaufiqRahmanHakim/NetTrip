@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using nettrip_api.Data;
@@ -11,9 +12,11 @@ using nettrip_api.Data;
 namespace nettrip_api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260902102942_dbset")]
+    partial class dbset
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,10 +124,6 @@ namespace nettrip_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BusId");
-
-                    b.HasIndex("RouteId");
-
                     b.ToTable("trips");
                 });
 
@@ -161,42 +160,18 @@ namespace nettrip_api.Migrations
 
             modelBuilder.Entity("nettrip_api.Model.Seat", b =>
                 {
-                    b.HasOne("nettrip_api.Model.Bus", "Bus")
+                    b.HasOne("nettrip_api.Model.Bus", "bus")
                         .WithMany("Seats")
                         .HasForeignKey("BusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Bus");
-                });
-
-            modelBuilder.Entity("nettrip_api.Model.Trip", b =>
-                {
-                    b.HasOne("nettrip_api.Model.Bus", "Bus")
-                        .WithMany()
-                        .HasForeignKey("BusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("nettrip_api.Model.Route", "Route")
-                        .WithMany("Trips")
-                        .HasForeignKey("RouteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Bus");
-
-                    b.Navigation("Route");
+                    b.Navigation("bus");
                 });
 
             modelBuilder.Entity("nettrip_api.Model.Bus", b =>
                 {
                     b.Navigation("Seats");
-                });
-
-            modelBuilder.Entity("nettrip_api.Model.Route", b =>
-                {
-                    b.Navigation("Trips");
                 });
 #pragma warning restore 612, 618
         }
