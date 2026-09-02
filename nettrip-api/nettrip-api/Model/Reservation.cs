@@ -13,5 +13,7 @@
 
         public ICollection<ReservationSeat> ReservationSeats { get; set; }
             = new List<ReservationSeat>();
+
+        public Payment Payment { get; set; } = null!;
     }
 }
