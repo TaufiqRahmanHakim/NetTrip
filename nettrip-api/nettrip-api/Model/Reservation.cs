@@ -15,5 +15,6 @@
             = new List<ReservationSeat>();
 
         public Payment Payment { get; set; } = null!;
+
     }
 }
